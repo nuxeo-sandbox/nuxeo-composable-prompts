@@ -1,0 +1,9 @@
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Manifest-Version: 1.0
+Bundle-Vendor: org.nuxeo.labs.composable.prompts
+Bundle-Version: 1.0.0
+Bundle-Name: nuxeo-composable-prompts-core
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.nuxeo.labs.composable.prompts.nuxeo-composable-prompts-core;singleton=true
+Nuxeo-Component: OSGI-INF/composablepromptsop-operation-contrib.xml

@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  nuxeo:
+    image: nuxeo-composable-prompts:2023.0.0-SNAPSHOT
+    ports:
+      - "8080:8080"
+      - "8787:8787"
+    environment:
+      NUXEO_DEV: "true"
+      NUXEO_CLID:
+    volumes:
+      - ./conf.d:/etc/nuxeo/conf.d
+      - data:/var/lib/nuxeo
+volumes:
+  data: {}
