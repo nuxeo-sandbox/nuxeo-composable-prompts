@@ -7,6 +7,7 @@ import org.nuxeo.ecm.core.test.DefaultRepositoryInit;
 import org.nuxeo.ecm.core.test.annotations.Granularity;
 import org.nuxeo.ecm.core.test.annotations.RepositoryConfig;
 import org.nuxeo.labs.composable.prompts.model.Run;
+import org.nuxeo.labs.composable.prompts.model.RunResult;
 import org.nuxeo.labs.composable.prompts.service.ComposablePromptsService;
 import org.nuxeo.runtime.test.runner.Features;
 import org.nuxeo.runtime.test.runner.FeaturesRunner;
@@ -23,7 +24,7 @@ public class TestComposablePromptsService {
 
     @Test
     public void testRunExecution() {
-        String result = composablePromptsService.runExecution(
+        RunResult result = composablePromptsService.runExecution(
                 new Run(System.getProperty("composablePromptsInteractionId"), "{\"text\":\"Hello\"}",
                         new Run.Configuration(System.getProperty("composablePromptsEnvironmentId"), "")));
         Assert.assertNotNull(result);

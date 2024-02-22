@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.nuxeo.ecm.core.api.NuxeoException;
 import org.nuxeo.labs.composable.prompts.model.Run;
+import org.nuxeo.labs.composable.prompts.model.RunResult;
 import org.nuxeo.runtime.api.Framework;
 import org.nuxeo.runtime.model.DefaultComponent;
 
@@ -29,9 +30,9 @@ public class ComposablePromptsComponent extends DefaultComponent implements Comp
     protected static final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public String runExecution(Run run) {
+    public RunResult runExecution(Run run) {
 
-        RequestBody body = null;
+        RequestBody body;
 
         try {
             String json = objectMapper.writeValueAsString(run);
@@ -50,7 +51,8 @@ public class ComposablePromptsComponent extends DefaultComponent implements Comp
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
-            return response.body().string();
+            String res = response.body().string();
+            return objectMapper.readValue(res, RunResult.class);
         } catch (IOException e) {
             throw new NuxeoException(e);
         }
