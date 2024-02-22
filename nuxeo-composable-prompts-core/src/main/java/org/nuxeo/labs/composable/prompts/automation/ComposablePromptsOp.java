@@ -1,7 +1,6 @@
-package org.nuxeo.labs.composable.prompts;
+package org.nuxeo.labs.composable.prompts.automation;
 
 import org.apache.commons.lang3.StringUtils;
-import org.nuxeo.ecm.automation.core.Constants;
 import org.nuxeo.ecm.automation.core.annotations.Context;
 import org.nuxeo.ecm.automation.core.annotations.Operation;
 import org.nuxeo.ecm.automation.core.annotations.OperationMethod;
@@ -13,10 +12,10 @@ import org.nuxeo.ecm.core.api.PathRef;
 /**
  *
  */
-@Operation(id=ComposablePromptsOp.ID, category=Constants.CAT_DOCUMENT, label="Composable Prompts Call", description="Describe here what your operation does.")
+@Operation(id=ComposablePromptsOp.ID, category="ComposablePrompts", label="Composable Prompts Call", description="Describe here what your operation does.")
 public class ComposablePromptsOp {
 
-    public static final String ID = "Document.ComposablePromptsOp";
+    public static final String ID = "ComposablePrompts.Run";
 
     @Context
     protected CoreSession session;
