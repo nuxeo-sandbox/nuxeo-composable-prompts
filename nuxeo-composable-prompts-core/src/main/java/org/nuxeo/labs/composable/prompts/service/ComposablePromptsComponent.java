@@ -1,12 +1,13 @@
 package org.nuxeo.labs.composable.prompts.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.nuxeo.ecm.core.api.NuxeoException;
-import org.nuxeo.labs.composable.prompts.model.Run;
+import org.nuxeo.labs.composable.prompts.model.RunRequest;
 import org.nuxeo.labs.composable.prompts.model.RunResult;
 import org.nuxeo.runtime.api.Framework;
 import org.nuxeo.runtime.model.DefaultComponent;
@@ -30,12 +31,12 @@ public class ComposablePromptsComponent extends DefaultComponent implements Comp
     protected static final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public RunResult runExecution(Run run) {
+    public String runExecution(RunRequest runRequest) {
 
         RequestBody body;
 
         try {
-            String json = objectMapper.writeValueAsString(run);
+            String json = objectMapper.writeValueAsString(runRequest);
             log.info(json);
             body = RequestBody.create(json, JSON);
         } catch (JsonProcessingException e) {
@@ -52,7 +53,11 @@ public class ComposablePromptsComponent extends DefaultComponent implements Comp
 
         try (Response response = client.newCall(request).execute()) {
             String res = response.body().string();
-            return objectMapper.readValue(res, RunResult.class);
+            JsonNode obj = objectMapper.readTree(res);
+            if (obj.has("error")) {
+                throw new NuxeoException(res);
+            }
+            return res;
         } catch (IOException e) {
             throw new NuxeoException(e);
         }

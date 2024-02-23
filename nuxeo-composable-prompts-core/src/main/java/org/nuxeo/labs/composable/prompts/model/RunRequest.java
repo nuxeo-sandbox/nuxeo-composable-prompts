@@ -4,14 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonRawValue;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Run {
+public class RunRequest {
 
     public String interactionId;
     @JsonRawValue
     public String data;
     public Configuration configuration;
 
-    public Run(String interactionId, String data, Configuration configuration) {
+    public RunRequest(String interactionId, String data, Configuration configuration) {
         this.interactionId = interactionId;
         this.data = data;
         this.configuration = configuration;
