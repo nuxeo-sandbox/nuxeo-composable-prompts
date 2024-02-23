@@ -1,12 +1,14 @@
 package org.nuxeo.labs.composable.prompts;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.nuxeo.ecm.automation.AutomationService;
 import org.nuxeo.ecm.automation.OperationContext;
 import org.nuxeo.ecm.automation.OperationException;
+import org.nuxeo.ecm.core.api.Blob;
 import org.nuxeo.ecm.core.api.CoreSession;
-import org.nuxeo.ecm.core.api.DocumentModel;
+import org.nuxeo.ecm.core.api.NuxeoException;
 import org.nuxeo.ecm.core.test.DefaultRepositoryInit;
 import org.nuxeo.ecm.core.test.annotations.Granularity;
 import org.nuxeo.ecm.core.test.annotations.RepositoryConfig;
@@ -17,8 +19,6 @@ import org.nuxeo.runtime.test.runner.FeaturesRunner;
 import javax.inject.Inject;
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.junit.Assert.assertEquals;
 
 @RunWith(FeaturesRunner.class)
 @Features(TestComposablePromptsFeature.class)
@@ -32,19 +32,26 @@ public class TestComposablePromptsOp {
     protected AutomationService automationService;
 
     @Test
-    public void shouldCallTheOperation() throws OperationException {
-        OperationContext ctx = new OperationContext(session);
-        DocumentModel doc = (DocumentModel) automationService.run(ctx, ComposablePromptsOp.ID);
-        assertEquals("/", doc.getPathAsString());
-    }
-
-    @Test
-    public void shouldCallWithParameters() throws OperationException {
-        final String path = "/default-domain";
+    public void testSuccess() throws OperationException {
         OperationContext ctx = new OperationContext(session);
         Map<String, Object> params = new HashMap<>();
-        params.put("path", path);
-        DocumentModel doc = (DocumentModel) automationService.run(ctx, ComposablePromptsOp.ID, params);
-        assertEquals(path, doc.getPathAsString());
+        params.put("interactionId",System.getProperty("composablePromptsInteractionId"));
+        params.put("environmentId",System.getProperty("composablePromptsEnvironmentId"));
+        params.put("modelId","theModel");
+        params.put("input","{\"text\":\"Hello\"}");
+        Blob json = (Blob) automationService.run(ctx, ComposablePromptsOp.ID, params);
+        Assert.assertNotNull(json);
+    }
+
+    @Test(expected = NuxeoException.class)
+    public void testFailure() throws OperationException {
+        OperationContext ctx = new OperationContext(session);
+        Map<String, Object> params = new HashMap<>();
+        params.put("interactionId",System.getProperty("composablePromptsInteractionId"));
+        params.put("environmentId",System.getProperty("composablePromptsEnvironmentId"));
+        params.put("modelId","gpt2000");
+        params.put("input","{\"text\":\"Hello\"}");
+        Blob json = (Blob) automationService.run(ctx, ComposablePromptsOp.ID, params);
+        Assert.assertNotNull(json);
     }
 }
