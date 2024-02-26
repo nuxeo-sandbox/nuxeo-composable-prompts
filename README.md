@@ -18,12 +18,12 @@ The operation to execute a Composable Prompts interaction is `ComposablePrompts.
 
 Parameters:
 
-| Name             | Description                                    | Type   | Required | Default value |
-|:-----------------|:-----------------------------------------------|:-------|:---------|:--------------|
-| interactionId    | The Vntana destination organization            | string | true     |               |
-| environmentId    | The client destination within the organization | string | true     |               |
-| modelId          | Save the document                              | string | true     |               |
-| interactionInput | The interaction JSON input                     | string | true     |               |
+| Name             | Description                | Type   | Required | Default value |
+|:-----------------|:---------------------------|:-------|:---------|:--------------|
+| interactionId    | The interaction ID         | string | true     |               |
+| environmentId    | The run environment ID     | string | true     |               |
+| modelId          | The Model ID               | string | true     |               |
+| interactionInput | The interaction JSON input | string | true     |               |
 
 Output: A string Blob containing the Composable Prompt REST API JSON response
 
@@ -72,7 +72,7 @@ function run(input, params) {
 The following nuxeo.conf properties must be configured in order to use the plugin
 
 | Property name                   | description                                                   |
-|---------------------------------|:--------------------------------------------------------------|
+|---------------------------------|---------------------------------------------------------------|
 | composable.prompts.project.id   | The Composable Prompts project ID                             |
 | composable.prompts.api.token    | The API token to use when calling Composable Prompts REST API |
 
