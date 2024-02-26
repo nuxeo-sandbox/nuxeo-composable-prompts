@@ -12,10 +12,11 @@ import org.nuxeo.labs.composable.prompts.service.ComposablePromptsService;
 /**
  *
  */
-@Operation(id=ComposablePromptsOp.ID, category="ComposablePrompts", label="Composable Prompts Call", description="Describe here what your operation does.")
+@Operation(id=ComposablePromptsOp.ID, category="ComposablePrompts", label="Execute Composable Prompts Interaction",
+           description="Call the Composable Prompts service to run an interaction")
 public class ComposablePromptsOp {
 
-    public static final String ID = "ComposablePrompts.Run";
+    public static final String ID = "ComposablePrompts.ExecInteraction";
 
     @Param(name = "interactionId", required = true)
     protected String interactionId;
@@ -26,7 +27,7 @@ public class ComposablePromptsOp {
     @Param(name = "modelId", required = true)
     protected String modelId;
 
-    @Param(name = "input", required = true)
+    @Param(name = "interactionInput", required = true)
     protected String input;
 
     @Context

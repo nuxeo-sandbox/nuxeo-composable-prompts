@@ -9,12 +9,12 @@ public class RunRequest {
     public String interactionId;
     @JsonRawValue
     public String data;
-    public Configuration configuration;
+    public Configuration config;
 
-    public RunRequest(String interactionId, String data, Configuration configuration) {
+    public RunRequest(String interactionId, String data, Configuration config) {
         this.interactionId = interactionId;
         this.data = data;
-        this.configuration = configuration;
+        this.config = config;
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
