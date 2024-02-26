@@ -27,7 +27,8 @@ Parameters:
 
 Output: A string Blob containing the Composable Prompt REST API JSON response
 
-Automation script Example which uses the text extract of a document, uses it with an interaction and stores the result in `dc:description:
+### Example
+Below is an automation script example which uses the text extract of a file document, uses it with an interaction and stores the result in `dc:description`:
 
 ```javascript
 function run(input, params) {
