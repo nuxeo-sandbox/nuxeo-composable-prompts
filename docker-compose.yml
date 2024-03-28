@@ -48,10 +48,8 @@ services:
       - mongodb
       - elasticsearch
     volumes:
-      - "nuxeo_data:/var/lib/nuxeo"
       - ./conf.d:/etc/nuxeo/conf.d
 volumes:
-  nuxeo_data:
   es_data:
   mongodb_data:
 
