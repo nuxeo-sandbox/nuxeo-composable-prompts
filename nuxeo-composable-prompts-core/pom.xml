@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.nuxeo.labs.composable.prompts</groupId>
     <artifactId>nuxeo-composable-prompts-parent</artifactId>
-    <version>2023.0.0-SNAPSHOT</version>
+    <version>2023.1.0-SNAPSHOT</version>
   </parent>
   <artifactId>nuxeo-composable-prompts-core</artifactId>
   <name>Nuxeo composable prompts core</name>
