@@ -13,6 +13,7 @@ import org.nuxeo.ecm.core.test.DefaultRepositoryInit;
 import org.nuxeo.ecm.core.test.annotations.Granularity;
 import org.nuxeo.ecm.core.test.annotations.RepositoryConfig;
 import org.nuxeo.labs.composable.prompts.automation.ComposablePromptsOp;
+import org.nuxeo.runtime.test.runner.Deploy;
 import org.nuxeo.runtime.test.runner.Features;
 import org.nuxeo.runtime.test.runner.FeaturesRunner;
 
@@ -54,4 +55,31 @@ public class TestComposablePromptsOp {
         Blob json = (Blob) automationService.run(ctx, ComposablePromptsOp.ID, params);
         Assert.assertNotNull(json);
     }
+
+    @Test
+    public void testAutomationWithOptionalParams() throws OperationException {
+        OperationContext ctx = new OperationContext(session);
+        Map<String, Object> params = new HashMap<>();
+        params.put("interactionId",System.getProperty("composablePromptsInteractionId"));
+        params.put("environmentId",System.getProperty("composablePromptsEnvironmentId"));
+        params.put("modelId",System.getProperty("composablePromptsModelId"));
+        params.put("interactionInput","{\"text\":\"Hello\"}");
+        params.put("max_tokens", "1000");
+        params.put("temperature", "0.8");
+        Blob json = (Blob) automationService.run(ctx, ComposablePromptsOp.ID, params);
+        Assert.assertNotNull(json);
+    }
+
+    @Test
+    @Deploy("nuxeo-composable-prompts-core:test-automation-js-contrib.xml")
+    public void testAutomationScriptWithOptionalParams() throws OperationException {
+        OperationContext ctx = new OperationContext(session);
+        Map<String, Object> params = new HashMap<>();
+        params.put("interactionId",System.getProperty("composablePromptsInteractionId"));
+        params.put("environmentId",System.getProperty("composablePromptsEnvironmentId"));
+        params.put("modelId",System.getProperty("composablePromptsModelId"));
+        Blob json = (Blob) automationService.run(ctx, "javascript.test_cp_automation_js", params);
+        Assert.assertNotNull(json);
+    }
+
 }
