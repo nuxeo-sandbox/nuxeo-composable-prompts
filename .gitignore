@@ -30,4 +30,4 @@ bin/
 *.bak
 *~gen
 .env
-cc.conf
+conf.d/cc.conf
