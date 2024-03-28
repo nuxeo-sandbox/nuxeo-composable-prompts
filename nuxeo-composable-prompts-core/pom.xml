@@ -44,6 +44,7 @@
             <composablePromptsProjectId>${composablePromptsProjectId}</composablePromptsProjectId>
             <composablePromptsInteractionId>${composablePromptsInteractionId}</composablePromptsInteractionId>
             <composablePromptsEnvironmentId>${composablePromptsEnvironmentId}</composablePromptsEnvironmentId>
+            <composablePromptsModelId>${composablePromptsModelId}</composablePromptsModelId>
           </systemPropertyVariables>
         </configuration>
       </plugin>

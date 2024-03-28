@@ -8,6 +8,7 @@ import org.nuxeo.labs.composable.prompts.model.RunError;
 import org.nuxeo.labs.composable.prompts.model.RunRequest;
 import org.nuxeo.labs.composable.prompts.model.RunResult;
 
+import java.util.List;
 import java.util.Map;
 
 public class TestModelJson {
@@ -15,11 +16,21 @@ public class TestModelJson {
     protected static final ObjectMapper objectMapper = new ObjectMapper();
 
     @Test
-    public void testRunRequestSerialization() throws JsonProcessingException {
+    public void testRunRequestRequiredParamsSerialization() throws JsonProcessingException {
         RunRequest request = new RunRequest("123", "\"test\"", new RunRequest.Configuration("abc", "model1"));
         String json = objectMapper.writeValueAsString(request);
-        Assert.assertEquals("{\"interactionId\":\"123\",\"data\":\"test\",\"configuration\":{\"environment\":\"abc\",\"model\":\"model1\"}}", json);
+        Assert.assertEquals("""        
+        {"interactionId":"123","data":"test","config":{"environment":"abc","model":"model1"}}""",json);
     }
+
+    @Test
+    public void testRunRequestAllParamsSerialization() throws JsonProcessingException {
+        RunRequest request = new RunRequest("123", "\"test\"", new RunRequest.Configuration("abc", "model1",0.5,1000), List.of("tag1","tag2"));
+        String json = objectMapper.writeValueAsString(request);
+        Assert.assertEquals("""        
+        {"interactionId":"123","data":"test","tags":["tag1","tag2"],"config":{"environment":"abc","model":"model1","temperature":0.5,"max_tokens":1000}}""",json);
+    }
+
 
     @Test
     public void testRunResultDeserialization() throws JsonProcessingException {

@@ -9,6 +9,8 @@ import org.nuxeo.ecm.core.api.impl.blob.StringBlob;
 import org.nuxeo.labs.composable.prompts.model.RunRequest;
 import org.nuxeo.labs.composable.prompts.service.ComposablePromptsService;
 
+import java.util.List;
+
 /**
  *
  */
@@ -30,12 +32,22 @@ public class ComposablePromptsOp {
     @Param(name = "interactionInput", required = true)
     protected String input;
 
+    @Param(name = "temperature", required = false)
+    protected double temperature;
+
+    @Param(name = "max_tokens", required = false)
+    protected long max_tokens;
+
+    @Param(name = "tags", required = false)
+    protected List<String> tags;
+
     @Context
     ComposablePromptsService cp;
 
     @OperationMethod
     public Blob run() {
-        RunRequest request = new RunRequest(interactionId, input, new RunRequest.Configuration(environmentId, modelId));
+        RunRequest request = new RunRequest(interactionId, input,
+                new RunRequest.Configuration(environmentId, modelId, temperature, max_tokens), tags);
         String result = cp.runExecution(request);
         return new StringBlob(result,"application/json");
     }

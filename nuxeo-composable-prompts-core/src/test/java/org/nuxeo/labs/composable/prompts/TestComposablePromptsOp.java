@@ -37,8 +37,8 @@ public class TestComposablePromptsOp {
         Map<String, Object> params = new HashMap<>();
         params.put("interactionId",System.getProperty("composablePromptsInteractionId"));
         params.put("environmentId",System.getProperty("composablePromptsEnvironmentId"));
-        params.put("modelId","theModel");
-        params.put("input","{\"text\":\"Hello\"}");
+        params.put("modelId",System.getProperty("composablePromptsModelId"));
+        params.put("interactionInput","{\"text\":\"Hello\"}");
         Blob json = (Blob) automationService.run(ctx, ComposablePromptsOp.ID, params);
         Assert.assertNotNull(json);
     }
@@ -50,7 +50,7 @@ public class TestComposablePromptsOp {
         params.put("interactionId",System.getProperty("composablePromptsInteractionId"));
         params.put("environmentId",System.getProperty("composablePromptsEnvironmentId"));
         params.put("modelId","gpt2000");
-        params.put("input","{\"text\":\"Hello\"}");
+        params.put("interactionInput","{\"text\":\"Hello\"}");
         Blob json = (Blob) automationService.run(ctx, ComposablePromptsOp.ID, params);
         Assert.assertNotNull(json);
     }
