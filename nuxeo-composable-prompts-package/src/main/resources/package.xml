@@ -2,7 +2,7 @@
 <package type="addon" name="nuxeo-composable-prompts" version="@VERSION@">
   <title>Nuxeo composable prompts</title>
   <description>
-    <p>Put here an HTML description of your Nuxeo Package.</p>
+    <p>A connector which provides a simple and easy to use API to leverage Composable Prompts capabilities across a Nuxeo application.</p>
   </description>
   <!-- <home-page>http://doc.nuxeo.com/</home-page> -->
   <vendor>Hyland</vendor>
