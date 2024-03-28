@@ -18,12 +18,15 @@ The operation to execute a Composable Prompts interaction is `ComposablePrompts.
 
 Parameters:
 
-| Name             | Description                | Type   | Required | Default value |
-|:-----------------|:---------------------------|:-------|:---------|:--------------|
-| interactionId    | The interaction ID         | string | true     |               |
-| environmentId    | The run environment ID     | string | true     |               |
-| modelId          | The Model ID               | string | true     |               |
-| interactionInput | The interaction JSON input | string | true     |               |
+| Name             | Description                                        | Type            | Required | Default value |
+|:-----------------|:---------------------------------------------------|:----------------|:---------|:--------------|
+| interactionId    | The interaction ID                                 | string          | true     |               |
+| environmentId    | The run environment ID                             | string          | true     |               |
+| modelId          | The Model ID                                       | string          | true     |               |
+| interactionInput | The interaction JSON input                         | string          | true     |               |
+| temperature      | The model temperature                              | string (double) | false    |               |
+| max_tokens       | The maximum number of tokens for the output        | string (long)   | false    |               |
+| tags             | Tags to associate to the run in composable prompts | Array of string | false    |               |
 
 Output: A string Blob containing the Composable Prompt REST API JSON response
 
@@ -50,7 +53,10 @@ function run(input, params) {
       'interactionId': 'MyInteractionId', 
       'environmentId': 'MyEnvironmentId', 
       'modelId': 'MyModelId', 
-      'interactionInput': JSON.stringify(interactionInput)  
+      'interactionInput': JSON.stringify(interactionInput),
+      'tags': ['tag1','tag2'],
+      'temperature':'0.9',
+      'max_tokens': '100'
   });
   
   Console.log(ccResponse.getString());
