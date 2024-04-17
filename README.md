@@ -77,10 +77,11 @@ function run(input, params) {
 ## Configuration
 The following nuxeo.conf properties must be configured in order to use the plugin
 
-| Property name                   | description                                                   |
-|---------------------------------|---------------------------------------------------------------|
-| composable.prompts.project.id   | The Composable Prompts project ID                             |
-| composable.prompts.api.token    | The API token to use when calling Composable Prompts REST API |
+| Property name                    | description                                                   |
+|----------------------------------|---------------------------------------------------------------|
+| composable.prompts.project.id    | The Composable Prompts project ID                             |
+| composable.prompts.api.token     | The API token to use when calling Composable Prompts REST API |
+| composable.prompts.http.timeout  | The timeout for http requests (default 60 seconds)            |
 
 
 # Support

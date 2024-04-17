@@ -11,6 +11,7 @@ import org.nuxeo.runtime.api.Framework;
 import org.nuxeo.runtime.model.DefaultComponent;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class ComposablePromptsComponent extends DefaultComponent implements ComposablePromptsService {
 
@@ -24,9 +25,12 @@ public class ComposablePromptsComponent extends DefaultComponent implements Comp
 
     public static final String PROJECT_ID = "composable.prompts.project.id";
 
-    final OkHttpClient client = new OkHttpClient();
+    public static final String TIMEOUT = "composable.prompts.http.timeout";
+
+    protected OkHttpClient client;
 
     protected static final ObjectMapper objectMapper = new ObjectMapper();
+
 
     @Override
     public String runExecution(RunRequest runRequest) {
@@ -49,7 +53,7 @@ public class ComposablePromptsComponent extends DefaultComponent implements Comp
                 .post(body)
                 .build();
 
-        try (Response response = client.newCall(request).execute()) {
+        try (Response response = getClient().newCall(request).execute()) {
             if (response.isSuccessful()) {
                 return response.body().string();
             } else {
@@ -58,6 +62,24 @@ public class ComposablePromptsComponent extends DefaultComponent implements Comp
         } catch (IOException e) {
             throw new NuxeoException(e);
         }
+    }
+
+    public OkHttpClient getClient() {
+        // thread safe lazy initialization of the client
+        // see https://en.wikipedia.org/wiki/Double-checked_locking
+        OkHttpClient result = client;
+        if (result == null) {
+            synchronized (this) {
+                result = client;
+                if (result == null) {
+                    long timeout = Long.parseLong(Framework.getProperty(TIMEOUT,"60"));
+                    client = result= new OkHttpClient.Builder()
+                            .readTimeout(timeout, TimeUnit.SECONDS)
+                            .build();
+                }
+            }
+        }
+        return result;
     }
 
 }
