@@ -30,6 +30,7 @@ public class RunRequest {
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Configuration {
         public String environment;
+        @JsonInclude(JsonInclude.Include.NON_DEFAULT)
         public String model;
         @JsonInclude(JsonInclude.Include.NON_DEFAULT)
         public double temperature;

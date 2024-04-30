@@ -18,15 +18,15 @@ The operation to execute a Composable Prompts interaction is `ComposablePrompts.
 
 Parameters:
 
-| Name             | Description                                        | Type            | Required | Default value |
-|:-----------------|:---------------------------------------------------|:----------------|:---------|:--------------|
-| interactionId    | The interaction ID                                 | string          | true     |               |
-| environmentId    | The run environment ID                             | string          | true     |               |
-| modelId          | The Model ID                                       | string          | true     |               |
-| interactionInput | The interaction JSON input                         | string          | true     |               |
-| temperature      | The model temperature                              | string (double) | false    |               |
-| max_tokens       | The maximum number of tokens for the output        | string (long)   | false    |               |
-| tags             | Tags to associate to the run in composable prompts | Array of string | false    |               |
+| Name             | Description                                                              | Type            | Required | Default value |
+|:-----------------|:-------------------------------------------------------------------------|:----------------|:---------|:--------------|
+| interactionId    | The interaction ID                                                       | string          | true     |               |
+| environmentId    | The run environment ID                                                   | string          | true     |               |
+| modelId          | The Model ID (required if the environment does not have a default model) | string          | false    |               |
+| interactionInput | The interaction JSON input                                               | string          | true     |               |
+| temperature      | The model temperature                                                    | string (double) | false    |               |
+| max_tokens       | The maximum number of tokens for the output                              | string (long)   | false    |               |
+| tags             | Tags to associate to the run in composable prompts                       | Array of string | false    |               |
 
 Output: A string Blob containing the Composable Prompt REST API JSON response
 
@@ -77,11 +77,10 @@ function run(input, params) {
 ## Configuration
 The following nuxeo.conf properties must be configured in order to use the plugin
 
-| Property name                    | description                                                   |
-|----------------------------------|---------------------------------------------------------------|
-| composable.prompts.project.id    | The Composable Prompts project ID                             |
-| composable.prompts.api.token     | The API token to use when calling Composable Prompts REST API |
-| composable.prompts.http.timeout  | The timeout for http requests (default 60 seconds)            |
+| Property name                   | description                                                 |
+|---------------------------------|-------------------------------------------------------------|
+| composable.prompts.api.key      | The API key to use when calling Composable Prompts REST API |
+| composable.prompts.http.timeout | The timeout for http requests (default 60 seconds)          |
 
 
 # Support

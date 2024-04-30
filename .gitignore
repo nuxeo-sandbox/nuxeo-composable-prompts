@@ -31,3 +31,4 @@ bin/
 *~gen
 .env
 conf.d/cc.conf
+nashorn_code_cache

@@ -40,11 +40,9 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
           <systemPropertyVariables>
-            <composablePromptsApiToken>${composablePromptsApiToken}</composablePromptsApiToken>
-            <composablePromptsProjectId>${composablePromptsProjectId}</composablePromptsProjectId>
+            <composablePromptsApiKey>${composablePromptsApiKey}</composablePromptsApiKey>
             <composablePromptsInteractionId>${composablePromptsInteractionId}</composablePromptsInteractionId>
             <composablePromptsEnvironmentId>${composablePromptsEnvironmentId}</composablePromptsEnvironmentId>
-            <composablePromptsModelId>${composablePromptsModelId}</composablePromptsModelId>
           </systemPropertyVariables>
         </configuration>
       </plugin>

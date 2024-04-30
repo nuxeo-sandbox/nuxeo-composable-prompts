@@ -21,7 +21,7 @@ public class TestComposablePromptsService {
     @Inject
     protected ComposablePromptsService composablePromptsService;
 
-    @Test(expected = NuxeoException.class)
+    @Test
     public void testRunExecution() {
         composablePromptsService.runExecution(
                 new RunRequest(System.getProperty("composablePromptsInteractionId"), "{\"text\":\"Hello\"}",

@@ -26,7 +26,7 @@ public class ComposablePromptsOp {
     @Param(name = "environmentId", required = true)
     protected String environmentId;
 
-    @Param(name = "modelId", required = true)
+    @Param(name = "modelId", required = false)
     protected String modelId;
 
     @Param(name = "interactionInput", required = true)

@@ -21,9 +21,7 @@ public class ComposablePromptsComponent extends DefaultComponent implements Comp
 
     public static final String BASE_URL = "https://api.composableprompts.com/api/v1";
 
-    public static final String API_TOKEN = "composable.prompts.api.token";
-
-    public static final String PROJECT_ID = "composable.prompts.project.id";
+    public static final String API_KEY = "composable.prompts.api.key";
 
     public static final String TIMEOUT = "composable.prompts.http.timeout";
 
@@ -47,8 +45,7 @@ public class ComposablePromptsComponent extends DefaultComponent implements Comp
 
         Request request = new Request.Builder()
                 .header("Accept", "application/json")
-                .header("Authorization", String.format("Bearer %s", Framework.getProperty(API_TOKEN)))
-                .header("X-Project-Id", Framework.getProperty(PROJECT_ID))
+                .header("Authorization", String.format("Bearer %s", Framework.getProperty(API_KEY)))
                 .url(String.format("%s/runs", BASE_URL))
                 .post(body)
                 .build();
