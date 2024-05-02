@@ -1,4 +1,4 @@
-package org.nuxeo.labs.composable.prompts.model;
+package org.nuxeo.labs.composable.prompts.model.execution;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

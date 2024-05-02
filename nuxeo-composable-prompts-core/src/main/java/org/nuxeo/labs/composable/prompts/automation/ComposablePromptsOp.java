@@ -6,7 +6,7 @@ import org.nuxeo.ecm.automation.core.annotations.OperationMethod;
 import org.nuxeo.ecm.automation.core.annotations.Param;
 import org.nuxeo.ecm.core.api.Blob;
 import org.nuxeo.ecm.core.api.impl.blob.StringBlob;
-import org.nuxeo.labs.composable.prompts.model.RunRequest;
+import org.nuxeo.labs.composable.prompts.model.execution.RunRequest;
 import org.nuxeo.labs.composable.prompts.service.ComposablePromptsService;
 
 import java.util.List;

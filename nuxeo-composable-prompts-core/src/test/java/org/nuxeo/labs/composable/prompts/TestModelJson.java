@@ -4,9 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
 import org.junit.Test;
-import org.nuxeo.labs.composable.prompts.model.RunError;
-import org.nuxeo.labs.composable.prompts.model.RunRequest;
-import org.nuxeo.labs.composable.prompts.model.RunResult;
+import org.nuxeo.labs.composable.prompts.model.execution.RunError;
+import org.nuxeo.labs.composable.prompts.model.execution.RunRequest;
+import org.nuxeo.labs.composable.prompts.model.execution.RunResult;
 
 import java.util.List;
 import java.util.Map;
