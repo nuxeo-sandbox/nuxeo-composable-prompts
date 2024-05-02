@@ -10,12 +10,12 @@ services:
       - "27017:27017"
     volumes:
       - mongodb_data:/data/db
-  elasticsearch:
-    image: opensearchproject/opensearch:1.3.14
-    hostname: elasticsearch
+  opensearch:
+    image: opensearchproject/opensearch:1.3.16
+    hostname: opensearch
     restart: always
     healthcheck:
-      test: curl -f http://elasticsearch:9200/
+      test: curl -f http://opensearch:9200/
       interval: 2m
       timeout: 30s
       retries: 10
@@ -29,7 +29,7 @@ services:
       - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
       - "DISABLE_SECURITY_PLUGIN=true"
     volumes:
-      - "es_data:/usr/share/opensearch/data"
+      - "os_data:/usr/share/opensearch/data"
   nuxeo:
     image: nuxeo-composable-prompts:2023.2.0-SNAPSHOT
     env_file:
@@ -46,10 +46,10 @@ services:
     restart: always
     depends_on:
       - mongodb
-      - elasticsearch
+      - opensearch
     volumes:
       - ./conf.d:/etc/nuxeo/conf.d
 volumes:
-  es_data:
+  os_data:
   mongodb_data:
 
