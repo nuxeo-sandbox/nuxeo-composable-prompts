@@ -12,7 +12,7 @@ import org.nuxeo.ecm.core.api.NuxeoException;
 import org.nuxeo.ecm.core.test.DefaultRepositoryInit;
 import org.nuxeo.ecm.core.test.annotations.Granularity;
 import org.nuxeo.ecm.core.test.annotations.RepositoryConfig;
-import org.nuxeo.labs.composable.prompts.automation.ComposablePromptsOp;
+import org.nuxeo.labs.composable.prompts.automation.ComposablePromptsRunOp;
 import org.nuxeo.runtime.test.runner.Deploy;
 import org.nuxeo.runtime.test.runner.Features;
 import org.nuxeo.runtime.test.runner.FeaturesRunner;
@@ -24,7 +24,7 @@ import java.util.Map;
 @RunWith(FeaturesRunner.class)
 @Features(TestComposablePromptsFeature.class)
 @RepositoryConfig(init = DefaultRepositoryInit.class, cleanup = Granularity.METHOD)
-public class TestComposablePromptsOp {
+public class TestComposablePromptsRunOp {
 
     @Inject
     protected CoreSession session;
@@ -39,7 +39,7 @@ public class TestComposablePromptsOp {
         params.put("interactionId",System.getProperty("composablePromptsInteractionId"));
         params.put("environmentId",System.getProperty("composablePromptsEnvironmentId"));
         params.put("interactionInput","{\"text\":\"Hello\"}");
-        Blob json = (Blob) automationService.run(ctx, ComposablePromptsOp.ID, params);
+        Blob json = (Blob) automationService.run(ctx, ComposablePromptsRunOp.ID, params);
         Assert.assertNotNull(json);
     }
 
@@ -51,7 +51,7 @@ public class TestComposablePromptsOp {
         params.put("environmentId",System.getProperty("composablePromptsEnvironmentId"));
         params.put("modelId","gpt2000");
         params.put("interactionInput","{\"text\":\"Hello\"}");
-        Blob json = (Blob) automationService.run(ctx, ComposablePromptsOp.ID, params);
+        Blob json = (Blob) automationService.run(ctx, ComposablePromptsRunOp.ID, params);
         Assert.assertNotNull(json);
     }
 
@@ -64,7 +64,7 @@ public class TestComposablePromptsOp {
         params.put("interactionInput","{\"text\":\"Hello\"}");
         params.put("max_tokens", "1000");
         params.put("temperature", "0.8");
-        Blob json = (Blob) automationService.run(ctx, ComposablePromptsOp.ID, params);
+        Blob json = (Blob) automationService.run(ctx, ComposablePromptsRunOp.ID, params);
         Assert.assertNotNull(json);
     }
 

@@ -2,7 +2,8 @@
 <component name="org.nuxeo.labs.composable.prompts.automation">
 
   <extension point="operations" target="org.nuxeo.ecm.core.operation.OperationServiceComponent">
-    <operation class="org.nuxeo.labs.composable.prompts.automation.ComposablePromptsOp"/>
+    <operation class="org.nuxeo.labs.composable.prompts.automation.ComposablePromptsRunOp"/>
+    <operation class="org.nuxeo.labs.composable.prompts.automation.ComposablePromptsEmbeddingOp"/>
   </extension>
 
 </component>

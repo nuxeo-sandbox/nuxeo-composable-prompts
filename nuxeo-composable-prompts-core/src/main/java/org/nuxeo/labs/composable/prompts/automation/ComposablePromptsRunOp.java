@@ -11,12 +11,9 @@ import org.nuxeo.labs.composable.prompts.service.ComposablePromptsService;
 
 import java.util.List;
 
-/**
- *
- */
-@Operation(id = ComposablePromptsOp.ID, category = "ComposablePrompts", label = "Execute Composable Prompts Interaction",
+@Operation(id = ComposablePromptsRunOp.ID, category = "ComposablePrompts", label = "Execute Composable Prompts Interaction",
         description = "Call the Composable Prompts service to run an interaction")
-public class ComposablePromptsOp {
+public class ComposablePromptsRunOp {
 
     public static final String ID = "ComposablePrompts.ExecInteraction";
 

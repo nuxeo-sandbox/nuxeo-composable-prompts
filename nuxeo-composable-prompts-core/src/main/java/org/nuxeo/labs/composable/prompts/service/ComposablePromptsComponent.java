@@ -101,7 +101,7 @@ public class ComposablePromptsComponent extends DefaultComponent implements Comp
                 result = client;
                 if (result == null) {
                     long timeout = Long.parseLong(Framework.getProperty(TIMEOUT,"60"));
-                    client = result= new OkHttpClient.Builder()
+                    client = result = new OkHttpClient.Builder()
                             .readTimeout(timeout, TimeUnit.SECONDS)
                             .build();
                 }

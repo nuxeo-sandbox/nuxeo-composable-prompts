@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EmbeddingResponse {
 
-    double[] values;
+    public double[] values;
 
     public EmbeddingResponse(){}
 
