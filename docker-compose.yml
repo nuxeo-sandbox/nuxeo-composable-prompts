@@ -30,7 +30,7 @@ services:
     volumes:
       - "os_data:/usr/share/opensearch/data"
   nuxeo:
-    image: nuxeo-composable-prompts:2023.2.0-SNAPSHOT
+    image: nuxeo-composable-prompts:2023.3.0-SNAPSHOT
     env_file:
       - ./.env
     ports:
