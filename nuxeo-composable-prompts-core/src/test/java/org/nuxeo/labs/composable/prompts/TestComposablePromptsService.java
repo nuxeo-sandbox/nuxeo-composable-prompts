@@ -11,7 +11,7 @@ import org.nuxeo.labs.composable.prompts.service.ComposablePromptsService;
 import org.nuxeo.runtime.test.runner.Features;
 import org.nuxeo.runtime.test.runner.FeaturesRunner;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 @RunWith(FeaturesRunner.class)
 @Features(TestComposablePromptsFeature.class)

@@ -15,7 +15,7 @@ import org.nuxeo.labs.composable.prompts.automation.ComposablePromptsEmbeddingOp
 import org.nuxeo.runtime.test.runner.Features;
 import org.nuxeo.runtime.test.runner.FeaturesRunner;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import java.util.HashMap;
 import java.util.Map;
 
